@@ -9,7 +9,6 @@ class User {
         this.contacts = []
     }
     static findUser(username) {
-        //type validation
         if(typeof username !== "string"){
             throw new Error("Invalid arguments! not String")
         }
@@ -33,8 +32,6 @@ class User {
 
     }
     newContact(cName) {
-        //check cname is string
-        //check not admin
         if(typeof cName !== "string"){
             throw new Error("Invalid arguments! not String")
         }
@@ -161,7 +158,6 @@ class User {
     }
 
     static newAdmin(name, username) {
-        //type validation - name -username
         if(typeof username !== "string" && typeof name !== "string"){
             throw new Error("Invalid arguments! not String")
         }
@@ -174,8 +170,6 @@ class User {
         return admin
     }
     newUser(name, username) {
-        //type validation - name -username
-        //check
         if(typeof username !== "string" && typeof name !== "string"){
             throw new Error("Invalid arguments! not String")
         }
@@ -197,8 +191,7 @@ class User {
         return User.allUser
     }
     updateUser(username, parameter, newValue) {
-        //type validation - name -username
-        //check
+
         if(typeof username !== "string" && typeof parameter !== "string" && typeof newValue !== "string"){
             throw new Error("Invalid arguments! not String")
         }
@@ -220,7 +213,6 @@ class User {
         }
     }
     updateName(newName) {
-        //newName string check
         if(typeof newName !== "string"){
             throw new Error("newName is not String")
         }
@@ -248,7 +240,6 @@ class User {
             throw new Error("Username Does not Exist")
         }
         User.allUser.splice(indexOfUserFound, 1)
-        // User.allUser.slice()
     }
 
 }

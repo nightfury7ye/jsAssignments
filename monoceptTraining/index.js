@@ -29,6 +29,7 @@ try {
     console.log(user1.getContactInfo("Praveen"))
     user1.deleteContactInfo("Praveen", "Main")
     console.log(user1.getContactInfo("Praveen"))
+    console.log(user1.getContactInfo("Chotu"))
 
 } catch (error) {
     console.log(error.message)
