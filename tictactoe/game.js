@@ -9,6 +9,9 @@ class Game{
         this.isGameActive = true
     }
     static setGame(player1Name, player2Name){
+        if(typeof player1Name == String || typeof player1Name == String){
+            throw new Error("Player names are not String")
+        }
         let players = [Player.setPlayer(player1Name, "X"),Player.setPlayer(player2Name, "O")]
         let board = Board.setBoard()
         let turn = 0
@@ -18,6 +21,12 @@ class Game{
     play(cellNo){
         if(!this.isGameActive){
             return "Game has Ended"
+        }
+        if(cellNo < 0 || cellNo > 8){
+            throw new Error("cell No. should be between 0 to 8")
+        }
+        if(!Number.isInteger(cellNo)){
+            throw new Error("cell no is not an integer")
         }
         let isCellMarked = this.board.cells[cellNo].isMarked()
         if(isCellMarked){
