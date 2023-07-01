@@ -93,7 +93,6 @@ class User {
         if (!isUserExist) {
             throw new Error("Contact Does not Exist")
         }
-        // console.log(this.contacts[indexOfContactFound]);
         return this.contacts[indexOfContactFound].addContactInfos(type, value)
     }
     getContactInfo(cName){
@@ -121,21 +120,7 @@ class User {
             throw new Error("Contact Does not Exist")
         }
         const contact = this.contacts[indexOfContactFound]
-        let [isContactInfoExist, indexOfContactInfo] = contact.findContactInfo(type)
-        if (!isContactInfoExist) {
-            throw new Error("ContactInfo Do not Exist")
-        }
-        if (type === newValue) {
-            throw new Error("Type Already Exist")
-        }
-        switch (parameter) {
-            case "type": contact.getContactInfo()[indexOfContactInfo].updateType(newValue)
-                break;
-            case "value": contact.getContactInfo()[indexOfContactInfo].updateValue(newValue)
-                break;
-            default:
-                throw new Error("Invalid Parameter")
-        }
+        contact.updateContactInfo(type, parameter, newValue);
     }
 
     deleteContactInfo(cName, type) {
@@ -145,16 +130,13 @@ class User {
         if (this.isAdmin) {
             throw new Error("Unauthorized")
         }
-        let [isUserExist, indexOfContactFound] = this.findContact(cName)
-        if (!isUserExist) {
+        let [isContactExist, indexOfContactFound] = this.findContact(cName)
+        if (!isContactExist) {
             throw new Error("Contact Does not Exist")
         }
         const contact = this.contacts[indexOfContactFound]
-        let [isContactInfoExist, indexOfContactInfo] = contact.findContactInfo(type)
-        if (!isContactInfoExist) {
-            throw new Error("ContactInfo Do not Exist")
-        }
-        contact.getContactInfo().splice(indexOfContactInfo, 1)
+        contact.deleteContactInfo(type)
+
     }
 
     static newAdmin(name, username) {

@@ -38,5 +38,29 @@ class Contact {
         }
         return [false, -1]
     }
+    updateContactInfo(type, parameter, newValue){
+        let [isContactInfoExist, indexOfContactInfo] = this.findContactInfo(type)
+        if (!isContactInfoExist) {
+            throw new Error("ContactInfo Do not Exist")
+        }
+        if (type === newValue) {
+            throw new Error("Type Already Exist")
+        }
+        switch (parameter) {
+            case "type": this.getContactInfo()[indexOfContactInfo].updateType(newValue)
+                break;
+            case "value": this.getContactInfo()[indexOfContactInfo].updateValue(newValue)
+                break;
+            default:
+                throw new Error("Invalid Parameter")
+        }
+    }
+    deleteContactInfo(type){
+        let [isContactInfoExist, indexOfContactInfo] = this.findContactInfo(type)
+        if (!isContactInfoExist) {
+            throw new Error("ContactInfo Do not Exist")
+        }
+        this.getContactInfo().splice(indexOfContactInfo, 1)
+    }
 }
 module.exports = Contact
